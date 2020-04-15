@@ -112,35 +112,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <ul>
-<li>升级node：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo npm cache clean -f</span><br><span class="line">sudo npm install n -g</span><br><span class="line">sudo n stable</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>安装haxo<br><code>sudo cnpm install -g hexo-cli</code></li>
-</ul>
-<p>/home/twh/blog/source/_posts/hexo博客更新/2020-04-15 14-58-38屏幕截图.png</p>
-<p>安装git：<br>搜索git，downloads<br>sudo add-apt-repository ppa:git-core/ppa<br>apt update<br>apt install git</p>
-<p>hexo初始化<br>sudo hexo init<br>启动<br>sudo hexo s<br>新建博客<br>sudo hexo n “my first blog”<br>生成文章<br>sudo hexo g<br>在blog/source/_posts中能看到新建的md文件<br>退回到/blog/<br>清理，生成<br>sudo hexo clean<br>sudo hexo g<br>再启动一下sudo hexo s,就可以在本地查看</p>
-<p>部署到github:<br>在github新建仓库，仓库名必须是用户名.github.io<br>回到终端：<br>安装git插件：cnpm install –save hexo-deployer-git<br>修改_config.yml文件，最后一行<br>deployment<br>deploy:<br>  type: git<br>  repo: https//github.com/just-to/just-to.github.io.git<br>  branch: master<br>部署：sudo hexo d<br>出现问题：已初始化空的 Git 仓库于 /home/twh/blog/.deploy_git/.git/</p>
-<p>*** 请告诉我你是谁。</p>
-<p>运行</p>
-<p>  git config –global user.email “<a href="mailto:you@example.com">you@example.com</a>“<br>  git config –global user.name “Your Name”</p>
-<p>来设置您账号的缺省身份标识。<br>如果仅在本仓库设置身份标识，则省略 –global 参数。<br>fatal: 无法自动探测邮件地址（得到 ‘twh@twh.(none)’）<br>FATAL Something’s wrong. Maybe you can find the solution here: <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">https://hexo.io/docs/troubleshooting.html</a><br>解决：<br>git config –global user.email “<a href="mailto:twh1996x@gmail.com">twh1996x@gmail.com</a>“<br>git config –global user.name “just-to”<br>完成，成功部署到github</p>
-<p>更改主题：<br>hexo网站，找到合适的主题，下载他的github主题：<br>git clone 主题地址  themes/主题名<br>更改blog/下的_config.yml文件：<br>theme: 更改为新主题名<br>三连操作：<br>sudo hexo clean<br>sudo hexo g<br>sudo hexo s<br>就可以在https:\just-to.github.io看到博客啦。</p>
-<p>问题：主题只有html，没有css效果<br>解决：下载过后的主题命名不对</p>
-<p>问题：不显示图片<br>npm install hexo-asset-image –save</p>
-
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -196,16 +167,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="这是新的开始"><a href="#这是新的开始" class="headerlink" title="这是新的开始"></a>这是新的开始</h2>
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -261,29 +222,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
