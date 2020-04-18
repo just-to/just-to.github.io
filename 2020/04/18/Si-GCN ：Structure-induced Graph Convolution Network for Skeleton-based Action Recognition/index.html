@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    从零开始搭建博客 |  Hexo
+    Si-GCN ：Structure-induced Graph Convolution Network for Skeleton-based Action Recognition |  Hexo
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -36,7 +36,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-从零开始搭建博客" class="article article-type-post" itemscope
+  <article id="post-Si-GCN ：Structure-induced Graph Convolution Network for Skeleton-based Action Recognition" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -44,7 +44,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  从零开始搭建博客
+  Si-GCN ：Structure-induced Graph Convolution Network for Skeleton-based Action Recognition
 </h1>
  
 
@@ -53,8 +53,8 @@
 
     
     <div class="article-meta">
-      <a href="/just-to.github.io/2020/04/16/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time datetime="2020-04-16T07:36:48.151Z" itemprop="datePublished">2020-04-16</time>
+      <a href="/just-to.github.io/2020/04/18/Si-GCN%20%EF%BC%9AStructure-induced%20Graph%20Convolution%20Network%20for%20Skeleton-based%20Action%20Recognition/" class="article-date">
+  <time datetime="2020-04-18T13:53:42.905Z" itemprop="datePublished">2020-04-18</time>
 </a>
       
       
@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1.2k</span>
+            <span class="post-count">1.8k</span>
         </span>
     </span>
 
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">4 min</span>
+            <span class="post-count">6 min</span>
         </span>
     </span>
 </div>
@@ -98,108 +98,89 @@
       
 
       
-      <h2 id="安装nodejs，hexo，git"><a href="#安装nodejs，hexo，git" class="headerlink" title="安装nodejs，hexo，git"></a>安装nodejs，hexo，git</h2><ul>
-<li>到官网下载nodejs，安装，可以用<code>node -v</code>测试。</li>
-<li>如果版本过低，可以升级node：</li>
+      <p>IJCNN 2019</p>
+<h2 id="1-摘要"><a href="#1-摘要" class="headerlink" title="1. 摘要"></a>1. 摘要</h2><ul>
+<li>之前的研究采用固定结构图来模拟人体骨骼的物理关节，但不能很好地考虑人体不同部位（如右臂和左腿）之间的相互作用。</li>
+<li>根据人体的自然划分，为每个输入的人体骨骼定义一组内部图，然后构造一个外部图来关联不同内部图的关系。不仅捕获每个人子图的内部模式，还考虑不同人的部分之间的交互。结合骨骼的时空特性，采用时间卷积的方法对骨骼的时空动力学进行建模。</li>
+<li>在NTU RGB+D 和 HDM05数据集上表现得很好。</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo npm cache clean -f</span><br><span class="line">sudo npm install n -g</span><br><span class="line">sudo n stable</span><br></pre></td></tr></table></figure>
+<h2 id="2-介绍"><a href="#2-介绍" class="headerlink" title="2. 介绍"></a>2. 介绍</h2><ul>
+<li><p>一个单独的人体骨架可以看作是骨架视频中的一个静态帧，它可以将关节作为顶点，将人体关节的骨架内连接作为图形结构数据中的边缘。</p>
+</li>
+<li><p>人体各部分的相互作用/关系因人类的各种行为而不同。在基于骨骼的视频样本中，既要考虑人体关节的特征，又要考虑人体各部分之间的相互作用。</p>
+</li>
+<li><p>提出了一种结构诱导图卷积网络（Si-GCN）框架。构建了一个基于骨架的人类行为，作为一系列骨架图，其中人类关节及其自然连接充当顶点和边。根据人体各部分之间的相互关系和相互作用，建立由结构诱导的人体骨架部分间图，然后进行部分间图卷积，时间片卷积将空间特性集合起来，对视频的时空动态进行编码。最后采用softmax层来获得基于骨骼的人类行为的预测类别。</p>
+</li>
+<li><p>本文主要贡献：</p>
 <ul>
-<li><p>安装cnpm，用淘宝镜像。<code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
-</li>
-<li><p>安装hexo</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>安装git：google搜索git，downloads,或者敲命令：</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:git-core/ppa</span><br><span class="line">apt update</span><br><span class="line">apt install git</span><br></pre></td></tr></table></figure>
-
-<h2 id="Hexo设置"><a href="#Hexo设置" class="headerlink" title="Hexo设置"></a>Hexo设置</h2><ul>
-<li><p>先初始化hexo：<code>sudo hexo init</code></p>
-</li>
-<li><p>启动hexo：<code>sudo hexo s</code>，可以在本地4000端口查看hexo初始化的主页，嗯，这是新的一个开始。</p>
-<p>  <img src="https://pic.downk.cc/item/5e98092dc2a9a83be556c6b1.png" alt="图1"></p>
-</li>
-<li><p>可以新建自己的博客，敲命令：<code>sudo hexo n &quot;博客名&quot;</code>，在blog/source/_posts下就能看到新建的md文件，所有创建的文件都会放在这里。</p>
-<p>  <img src="https://pic.downk.cc/item/5e98092dc2a9a83be556c6b5.png" alt="图2"></p>
-</li>
-<li><p>写入博客内容，这里可以gedit打开，或者用vim打开文件，记得要用md的语法书写，写完md文件后保存。如果提示无法修改或保存，用<strong>chmod命令</strong>改一下文件的权限。</p>
-</li>
-<li><p>回到终端/blog/目录下，生成文章：<code>sudo hexo g</code></p>
-</li>
-<li><p>清理，生成，启动(可执行最后一个命令)</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo clean</span><br><span class="line">sudo hexo g</span><br><span class="line">sudo hexo s</span><br></pre></td></tr></table></figure>
-
-<p>就可以在本地查看新添加的文章。下面是部署到github，在浏览器上可以输入网址可以查看博客。</p>
-<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><ul>
-<li><p>在github新建仓库，仓库名必须是用户名.github.io，具体操作另外阐述。</p>
-</li>
-<li><p>回到终端，安装git插件：<code>cnpm install --save hexo-deployer-git</code></p>
-</li>
-<li><p>修改/blog/下的_config.yml文件，最后一行</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https//github.com/...(自己github的地址，在新建的仓库复制链接)</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>部署：<code>sudo hexo d</code></p>
-<ul>
-<li>bug：<blockquote>
-<p>已初始化空的 Git 仓库于 /home/twh/blog/.deploy_git/.git/<br>请告诉我你是谁。<br>运行<br>git config –global user.email “<a href="mailto:you@example.com">you@example.com</a>“<br>git config –global user.name “Your Name”<br>来设置您账号的缺省身份标识。<br>如果仅在本仓库设置身份标识，则省略 –global 参数。<br>fatal: 无法自动探测邮件地址（得到 ‘twh@twh.(none)’）<br>FATAL Something’s wrong. Maybe you can find the solution here: &gt;<a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">https://hexo.io/docs/troubleshooting.html</a></p>
-</blockquote>
-</li>
+<li>为输入的人体骨骼建立了一组由结构诱导的内部图，在特定的人类行为中建模它们的相互作用而形成外部图。</li>
+<li>通过对NTU-RGBD和HDM05数据集的综合比较，Si-GCN框架能够获得最好的结果。</li>
 </ul>
 </li>
 </ul>
-<p>解决：加上邮箱和用户名</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email "twh1996x@gmail.com"</span><br><span class="line">git config --global user.name "just-to"</span><br></pre></td></tr></table></figure>
-
-<p>终端提示输入github用户名和密码，完成，成功部署到github</p>
-<h2 id="更改Hexo主题"><a href="#更改Hexo主题" class="headerlink" title="更改Hexo主题"></a>更改Hexo主题</h2><ul>
-<li>更改主题：google搜索hexo，进入网站，找到合适的主题，下载他的github主题：<code>git clone 主题地址（github地址）  themes/主题名（本地存放的目录）</code></li>
-<li>更改blog/下的_config.yml文件：将<strong>theme: 主题名</strong> 的主题名更改为新下载的主题名（文件名）</li>
-<li>清理，生成，部署三连操作：</li>
+<h2 id="3-谱图卷积综述"><a href="#3-谱图卷积综述" class="headerlink" title="3. 谱图卷积综述"></a>3. 谱图卷积综述</h2><ul>
+<li>利用图的邻接矩阵/拉普拉斯矩阵的特征值、特征向量分析它的内在性质。拉普拉斯矩阵的谱在一定程度上反映了图的全局特征。</li>
+<li>给定一个有N个节点的图G={V，E}，V和E分别表示节点和相应的边。邻接矩阵和度矩阵用A和D表示。对称正规化拉普拉斯矩阵为<br><img src="https://pic.downk.cc/item/5e9b04bcc2a9a83be5e280c8.png" alt></li>
+<li>写成L=U∧U^通过奇异值分解（SVD），U:正交特征向量{μ1，μ2，···，μN}组成的矩阵，相应的特征值为{λ1，λ2，··，λN}和∧=diag[λ1，λ2，··，λN]。</li>
+<li>在傅里叶变换中，Laplacian矩阵L分解的特征向量{μ1，μ2，···，μN}作为一组傅里叶基，特征值{λ1，λ2，··，λN}定义了频率的概念。</li>
+<li>给定一个信号向量x∈RN，其每一项附加在一个顶点上，图的傅里叶变换可以表示为x = U x.</li>
+<li>傅里叶变换在频域中将卷积fω转换为ˆfω（λ）。所以光谱卷积可以表示为<br><img src="https://pic.downk.cc/item/5e9b04bcc2a9a83be5e280ca.png" alt></li>
+<li>L的奇异值分解计算量很大，所以用多项式逼近精确的滤波器。ˆfω（λ）可以用切比雪夫多项式Tk（x）到K阶的展开来近似<br><img src="https://pic.downk.cc/item/5e9b04bcc2a9a83be5e280ce.png" alt></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo clean</span><br><span class="line">sudo hexo g</span><br><span class="line">sudo hexo d</span><br></pre></td></tr></table></figure>
-
-<p>就可以在https:\…（浏览器输入网址）看到新的博客主题和内容啦。</p>
-<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><ul>
-<li>bug1：主题只有html，没有css效果。</li>
-<li>解决1：<ul>
-<li>1.(可能)下载过后的主题命名不对。</li>
-<li>2.修改blog中 _config.yml 文件：将root:/  修改为 root:/ xxx.guithub.io 。即在后面加上Github 主页的仓库名</li>
+<h2 id="4-结构诱导图卷积"><a href="#4-结构诱导图卷积" class="headerlink" title="4. 结构诱导图卷积"></a>4. 结构诱导图卷积</h2><h3 id="4-1-基本公式"><a href="#4-1-基本公式" class="headerlink" title="4-1. 基本公式"></a>4-1. 基本公式</h3><ul>
+<li>骨骼关节的特征用每帧每个关节的坐标来描述。所有边都没有方向，如果两个关节之间有骨骼，则每条边为1，否则为0。对骨骼空间结构进行层次图卷积，包括内部卷积和部分卷积。此外，为了对时间演化进行编码，还采用了时间轴上的局部切片卷积。</li>
+<li>图1：Si-GCN框架的体系结构。对集合G中的结构诱导部分图进行图卷积，对结构诱导交互图进行图卷积，然后采用时间卷积来集成序列的特征，最后将时空特征反馈给池化层和softmax分类器。<br><img src="https://pic.downk.cc/item/5e9aa719c2a9a83be5990f47.png" alt></li>
+<li>设张量X N×d×T为T帧的输入序列，N为每帧中的关节数，d为每个节点的信号长度（即特征维数），称为Si-GCN的时空卷积块为<br><img src="https://pic.downk.cc/item/5e9b04bcc2a9a83be5e280d3.png" alt></li>
 </ul>
+<h3 id="4-2-结构诱导的部内-部间图"><a href="#4-2-结构诱导的部内-部间图" class="headerlink" title="4-2. 结构诱导的部内/部间图"></a>4-2. 结构诱导的部内/部间图</h3><ul>
+<li>人类运动的显著区域（即四肢）首先被分成四部分，然后它们生成四个相应的部分内图。所有结构诱导的部内图都是以m=11，t=1，···，t的集合{Gintra t1，Gintra t2，…，Gintra tm}来收集的，它表示不同的部分以及人体的全局信息。</li>
+<li>为了对不同部分或部分内图的关系进行编码，我们进一步构建了一个结构诱导的交互式图Ginter t，其中每个顶点由集合的部分内图{Gintra ti}定义。</li>
+</ul>
+<h3 id="4-3-结构诱导图卷积"><a href="#4-3-结构诱导图卷积" class="headerlink" title="4-3. 结构诱导图卷积"></a>4-3. 结构诱导图卷积</h3><ul>
+<li>在每个帧的每个内部部分图上，卷积滤波的第j输出形式上定义为<br><img src="https://pic.downk.cc/item/5e9b04bcc2a9a83be5e280d7.png" alt></li>
+<li>部分间图Ginter t上的卷积滤波Ginter表示为<br><img src="https://pic.downk.cc/item/5e9b04c7c2a9a83be5e28b9e.png" alt></li>
+<li>对于时间卷积，我们首先将部分间图w.r.t.的所有帧沿时间轴的特征叠加为三维张量特征矩阵，然后仅在时间片上执行局部卷积滤波<br><img src="https://pic.downk.cc/item/5e9b04c7c2a9a83be5e28ba1.png" alt></li>
+</ul>
+<h2 id="5-实验"><a href="#5-实验" class="headerlink" title="5. 实验"></a>5. 实验</h2><ul>
+<li>表1：NTU-RGB+D数据集上基于骨架的动作识别性能比较。<br><img src="https://pic.downk.cc/item/5e9aa719c2a9a83be5990f4b.png" alt></li>
+<li>HDM05数据集上基于骨架的动作识别性能比较。<br><img src="https://pic.downk.cc/item/5e9aa719c2a9a83be5990f4e.png" alt></li>
+</ul>
+<h2 id="6-谱聚类补充"><a href="#6-谱聚类补充" class="headerlink" title="6. 谱聚类补充"></a>6. 谱聚类补充</h2><h3 id="6-1-谱聚类"><a href="#6-1-谱聚类" class="headerlink" title="6-1. 谱聚类"></a>6-1. 谱聚类</h3><ul>
+<li>将数据看作空间中的点</li>
+<li>切图：子图间边权重和尽可能低，子图内权重和尽可能高。</li>
+</ul>
+<h3 id="6-2-无向权重图"><a href="#6-2-无向权重图" class="headerlink" title="6-2. 无向权重图"></a>6-2. 无向权重图</h3><ul>
+<li>图G=(V,E)，wij为vi，vj的权重。任意点vi，度di为和它相连所有边的权重之和。di=∑wij</li>
+<li>度矩阵D只有对角线有值，对应第i行第j个点的度数。</li>
+<li>|A|:子集A中的个数，vol(A):=∑di(全部di的和)</li>
+</ul>
+<h3 id="6-3-相似矩阵"><a href="#6-3-相似矩阵" class="headerlink" title="6-3. 相似矩阵"></a>6-3. 相似矩阵</h3><ul>
+<li><p>在谱聚类，无直接给出邻接矩阵（边权重）</p>
+</li>
+<li><p>思想：较远的两点权重低，较近的高，可通过样本点距离度量的相似矩阵S获得邻接矩阵W</p>
+</li>
+<li><p>构建邻接矩阵W的方法：ϵ-邻近法，K邻近法和全连接法。</p>
+</li>
+<li><p>ϵ-邻近法：相似矩阵sij=||xi−xj|^2, 邻接矩阵W<br><img src="https://pic.downk.cc/item/5e9aa719c2a9a83be5990f52.png" alt></p>
+</li>
+<li><p>全连接法：可以选择不同的核函数（高斯核），相似矩阵和邻接矩阵相同<br><img src="https://pic.downk.cc/item/5e9aa719c2a9a83be5990f54.png" alt></p>
 </li>
 </ul>
-<hr>
-<ul>
-<li>bug2：不显示图片</li>
-<li>解决2：<ul>
-<li>1.查资料：首先找到博客根目录下面的_config.yml文件，修改post_assrt_folder的值为true.接着 git bash 切换到博客根目录下面，安装第三方插件hexo-assrt-image：<br><code>npm install hexo-asset-image --save</code><br>接着hexo new “文章名” 新建一篇文章，会发现source/_posts/目录下面会生成一个和 markdown 文件同名的文件夹。再将当前这篇文章中需要插入的图片放到这个文件夹中，再到 markdown 中引用该文件夹中的图片，最后hexo g -&gt; hexo d，就可以正常的查看这些图片了。</li>
-<li>操作之后，会创建同名的文件夹，但是好像文章中的图片没有显示，但是封面的图片加载啦。浏览器打开网址,竟然有封面图片了，开心哈哈。</li>
-<li>[04-16] 针对图片无法显示的问题，在采用的上面的方法依然没有解决，所以采用另一种方式，<code>聚合图床https://www.superbed.cn/</code>，注册后将图片上传上去，然后在md中要用到图片时直接复制引用图床的链接。<br>例如：！[描述] (复制图床的链接)</li>
+<h3 id="6-4-Laplace矩阵"><a href="#6-4-Laplace矩阵" class="headerlink" title="6-4. Laplace矩阵"></a>6-4. Laplace矩阵</h3><ul>
+<li>Laplace矩阵：L = D - W（D度矩阵，W邻接矩阵）</li>
+<li>对于任意向量f，有：<br><img src="https://pic.downk.cc/item/5e9aa793c2a9a83be59976ce.png" alt></li>
 </ul>
-</li>
+<h3 id="6-5-无向图切图"><a href="#6-5-无向图切图" class="headerlink" title="6-5. 无向图切图"></a>6-5. 无向图切图</h3><ul>
+<li>图G(V,E)切k个子图A1，A2,…,Ak</li>
+<li>任意子图A，B，切图权重W(A,B) =∑wij(i∈A,j∈B)</li>
+<li>对于k个子图，切图cut定义为：<br><img src="https://pic.downk.cc/item/5e9aa793c2a9a83be59976d0.png" alt><br>A 为Ai的补集</li>
+<li>目标：子图内权重高，子图间权重低</li>
 </ul>
-<hr>
-<ul>
-<li>bug3：执行<code>sudo hexo d:ERROR Deployer not found: git</code></li>
-<li>解决3：安装git插件<code>sudo cnpm install --save hexo-deployer-git</code> </li>
-</ul>
-<hr>
-<ul>
-<li>bug4：首页显示文章的全部内容</li>
-<li>解决：<ul>
-<li>文章太长，截断按钮文字(在需要截断的行增加此标记：(&lt; !–more– &gt;)excerpt_link: 阅读更多…</li>
-<li>如果嫌每篇文章手动加more标记比较麻烦，又不想在首页全文显示，可以把excerpt_all设置成true，这样首页只会显示文章归档。<code>excerpt_all: false</code></li>
-<li>我是改为true，然后<code>sudo hexo clean, sudo hexo g, sudo hexo d</code>，重新打开网站就只看到文章归档</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li>参考资料：<br>  1.<a href="https://www.bilibili.com/video/BV1Yb411a7ty?t=1421" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1Yb411a7ty?t=1421</a><br>  2.<a href="https://shen-yu.gitee.io/2019/ayer/" target="_blank" rel="noopener">https://shen-yu.gitee.io/2019/ayer/</a></li>
+<h3 id="6-6-切图聚类"><a href="#6-6-切图聚类" class="headerlink" title="6-6. 切图聚类"></a>6-6. 切图聚类</h3><ul>
+<li>RatioCut切图：对每个切图，不光考虑最小化cut，还同时考虑最大化每个子图点的个数。<br><img src="https://pic.downk.cc/item/5e9aa793c2a9a83be59976d2.png" alt></li>
+<li>引入指示向量hj∈{h1,h2,..hk}j=1,2,…k ，是一个n维向量。<br><img src="https://pic.downk.cc/item/5e9aa793c2a9a83be59976d4.png" alt></li>
+<li>对应的RatioCut函数表达式为：<br><img src="https://pic.downk.cc/item/5e9aa793c2a9a83be59976d6.png" alt></li>
+<li>优化目标argmintr(H^T LH) s.t.H^T H=I，找到k个最小的特征值。</li>
 </ul>
 
       
@@ -269,7 +250,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/04/16/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/04/18/Si-GCN%20%EF%BC%9AStructure-induced%20Graph%20Convolution%20Network%20for%20Skeleton-based%20Action%20Recognition/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -285,19 +266,10 @@
   
   <nav class="article-nav">
     
-      <a href="/just-to.github.io/2020/04/18/Si-GCN%20%EF%BC%9AStructure-induced%20Graph%20Convolution%20Network%20for%20Skeleton-based%20Action%20Recognition/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Si-GCN ：Structure-induced Graph Convolution Network for Skeleton-based Action Recognition
-          
-        </div>
-      </a>
     
-    
-      <a href="/just-to.github.io/2020/04/16/Ubuntu%E5%AE%89%E8%A3%85%E5%B0%8F%E4%B9%A6%E5%8C%A0%E5%B9%B6%E5%88%9B%E5%BB%BA%E6%A1%8C%E9%9D%A2%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/" class="article-nav-link">
+      <a href="/just-to.github.io/2020/04/16/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Ubuntu安装小书匠并创建桌面快捷方式</div>
+        <div class="article-nav-title">从零开始搭建博客</div>
       </a>
     
   </nav>
