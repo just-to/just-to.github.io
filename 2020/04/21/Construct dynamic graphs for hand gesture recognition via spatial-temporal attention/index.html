@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Si-GCN ：Structure-induced Graph Convolution Network for Skeleton-based Action Recognition |  Hexo
+    Construct dynamic graphs for hand gesture recognition via spatial-temporal attention |  Hexo
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -36,7 +36,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-Si-GCN ：Structure-induced Graph Convolution Network for Skeleton-based Action Recognition" class="article article-type-post" itemscope
+  <article id="post-Construct dynamic graphs for hand gesture recognition via spatial-temporal attention" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -44,7 +44,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Si-GCN ：Structure-induced Graph Convolution Network for Skeleton-based Action Recognition
+  Construct dynamic graphs for hand gesture recognition via spatial-temporal attention
 </h1>
  
 
@@ -53,8 +53,8 @@
 
     
     <div class="article-meta">
-      <a href="/just-to.github.io/2020/04/18/Si-GCN%20%EF%BC%9AStructure-induced%20Graph%20Convolution%20Network%20for%20Skeleton-based%20Action%20Recognition/" class="article-date">
-  <time datetime="2020-04-18T13:53:42.905Z" itemprop="datePublished">2020-04-18</time>
+      <a href="/just-to.github.io/2020/04/21/Construct%20dynamic%20graphs%20for%20hand%20gesture%20recognition%20via%20spatial-temporal%20attention/" class="article-date">
+  <time datetime="2020-04-21T07:19:38.779Z" itemprop="datePublished">2020-04-21</time>
 </a>
       
       
@@ -98,89 +98,33 @@
       
 
       
-      <p>IJCNN 2019</p>
-<h2 id="1-摘要"><a href="#1-摘要" class="headerlink" title="1. 摘要"></a>1. 摘要</h2><ul>
-<li>之前的研究采用固定结构图来模拟人体骨骼的物理关节，但不能很好地考虑人体不同部位（如右臂和左腿）之间的相互作用。</li>
-<li>根据人体的自然划分，为每个输入的人体骨骼定义一组内部图，然后构造一个外部图来关联不同内部图的关系。不仅捕获每个人子图的内部模式，还考虑不同人的部分之间的交互。结合骨骼的时空特性，采用时间卷积的方法对骨骼的时空动力学进行建模。</li>
-<li>在NTU RGB+D 和 HDM05数据集上表现得很好。</li>
+      <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>提出了一种基于动态图的时空注意（DG-STA）手势识别方法。其关键思想是首先从手部骨架构造一个完全连通的图，然后通过在空间域和时间域执行的自关注机制自动学习节点特征和边缘。我们进一步提出利用联合位置的时空线索来保证在挑战性条件下的鲁棒识别。另外，采用了一种新的时空掩模，大大降低了99%的计算量。</li>
 </ul>
-<h2 id="2-介绍"><a href="#2-介绍" class="headerlink" title="2. 介绍"></a>2. 介绍</h2><ul>
-<li><p>一个单独的人体骨架可以看作是骨架视频中的一个静态帧，它可以将关节作为顶点，将人体关节的骨架内连接作为图形结构数据中的边缘。</p>
-</li>
-<li><p>人体各部分的相互作用/关系因人类的各种行为而不同。在基于骨骼的视频样本中，既要考虑人体关节的特征，又要考虑人体各部分之间的相互作用。</p>
-</li>
-<li><p>提出了一种结构诱导图卷积网络（Si-GCN）框架。构建了一个基于骨架的人类行为，作为一系列骨架图，其中人类关节及其自然连接充当顶点和边。根据人体各部分之间的相互关系和相互作用，建立由结构诱导的人体骨架部分间图，然后进行部分间图卷积，时间片卷积将空间特性集合起来，对视频的时空动态进行编码。最后采用softmax层来获得基于骨骼的人类行为的预测类别。</p>
-</li>
-<li><p>本文主要贡献：</p>
-<ul>
-<li>为输入的人体骨骼建立了一组由结构诱导的内部图，在特定的人类行为中建模它们的相互作用而形成外部图。</li>
-<li>通过对NTU-RGBD和HDM05数据集的综合比较，Si-GCN框架能够获得最好的结果。</li>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li>有三个关键的设计，区分我们的方法与以前的方法。首先，我们提出了一个统一的图来代替一个固定结构的预定义图，该图的边和节点是根据不同的动作动态优化的。</li>
+<li>其次，我们提出了时空位置嵌入，改进了时空位置嵌入[34]。它对图中每个节点的身份和时序信息进行编码。将节点特征与其位置嵌入相结合，可以进一步提高算法的性能。</li>
+<li>第三，为了更有效地实现我们的DG-STA，我们提出了一种新的时空掩模操作，它直接应用于所有节点间的标度点积矩阵。它显著提高了模型的计算效率，并允许更容易的输入数据排列。</li>
 </ul>
-</li>
-</ul>
-<h2 id="3-谱图卷积综述"><a href="#3-谱图卷积综述" class="headerlink" title="3. 谱图卷积综述"></a>3. 谱图卷积综述</h2><ul>
-<li>利用图的邻接矩阵/拉普拉斯矩阵的特征值、特征向量分析它的内在性质。拉普拉斯矩阵的谱在一定程度上反映了图的全局特征。</li>
-<li>给定一个有N个节点的图G={V，E}，V和E分别表示节点和相应的边。邻接矩阵和度矩阵用A和D表示。对称正规化拉普拉斯矩阵为<br><img src="https://pic.downk.cc/item/5e9b04bcc2a9a83be5e280c8.png" alt></li>
-<li>写成L=U∧U^通过奇异值分解（SVD），U:正交特征向量{μ1，μ2，···，μN}组成的矩阵，相应的特征值为{λ1，λ2，··，λN}和∧=diag[λ1，λ2，··，λN]。</li>
-<li>在傅里叶变换中，Laplacian矩阵L分解的特征向量{μ1，μ2，···，μN}作为一组傅里叶基，特征值{λ1，λ2，··，λN}定义了频率的概念。</li>
-<li>给定一个信号向量x∈RN，其每一项附加在一个顶点上，图的傅里叶变换可以表示为x = U x.</li>
-<li>傅里叶变换在频域中将卷积fω转换为ˆfω（λ）。所以光谱卷积可以表示为<br><img src="https://pic.downk.cc/item/5e9b04bcc2a9a83be5e280ca.png" alt></li>
-<li>L的奇异值分解计算量很大，所以用多项式逼近精确的滤波器。ˆfω（λ）可以用切比雪夫多项式Tk（x）到K阶的展开来近似<br><img src="https://pic.downk.cc/item/5e9b04bcc2a9a83be5e280ce.png" alt></li>
-</ul>
-<h2 id="4-结构诱导图卷积"><a href="#4-结构诱导图卷积" class="headerlink" title="4. 结构诱导图卷积"></a>4. 结构诱导图卷积</h2><h3 id="4-1-基本公式"><a href="#4-1-基本公式" class="headerlink" title="4-1. 基本公式"></a>4-1. 基本公式</h3><ul>
-<li>骨骼关节的特征用每帧每个关节的坐标来描述。所有边都没有方向，如果两个关节之间有骨骼，则每条边为1，否则为0。对骨骼空间结构进行层次图卷积，包括内部卷积和部分卷积。此外，为了对时间演化进行编码，还采用了时间轴上的局部切片卷积。</li>
-<li>图1：Si-GCN框架的体系结构。对集合G中的结构诱导部分图进行图卷积，对结构诱导交互图进行图卷积，然后采用时间卷积来集成序列的特征，最后将时空特征反馈给池化层和softmax分类器。<br><img src="https://pic.downk.cc/item/5e9aa719c2a9a83be5990f47.png" alt></li>
-<li>设张量X N×d×T为T帧的输入序列，N为每帧中的关节数，d为每个节点的信号长度（即特征维数），称为Si-GCN的时空卷积块为<br><img src="https://pic.downk.cc/item/5e9b04bcc2a9a83be5e280d3.png" alt></li>
-</ul>
-<h3 id="4-2-结构诱导的部内-部间图"><a href="#4-2-结构诱导的部内-部间图" class="headerlink" title="4-2. 结构诱导的部内/部间图"></a>4-2. 结构诱导的部内/部间图</h3><ul>
-<li>人类运动的显著区域（即四肢）首先被分成四部分，然后它们生成四个相应的部分内图。所有结构诱导的部内图都是以m=11，t=1，···，t的集合{Gintra t1，Gintra t2，…，Gintra tm}来收集的，它表示不同的部分以及人体的全局信息。</li>
-<li>为了对不同部分或部分内图的关系进行编码，我们进一步构建了一个结构诱导的交互式图Ginter t，其中每个顶点由集合的部分内图{Gintra ti}定义。</li>
-</ul>
-<h3 id="4-3-结构诱导图卷积"><a href="#4-3-结构诱导图卷积" class="headerlink" title="4-3. 结构诱导图卷积"></a>4-3. 结构诱导图卷积</h3><ul>
-<li>在每个帧的每个内部部分图上，卷积滤波的第j输出形式上定义为<br><img src="https://pic.downk.cc/item/5e9b04bcc2a9a83be5e280d7.png" alt></li>
-<li>部分间图Ginter t上的卷积滤波Ginter表示为<br><img src="https://pic.downk.cc/item/5e9b04c7c2a9a83be5e28b9e.png" alt></li>
-<li>对于时间卷积，我们首先将部分间图w.r.t.的所有帧沿时间轴的特征叠加为三维张量特征矩阵，然后仅在时间片上执行局部卷积滤波<br><img src="https://pic.downk.cc/item/5e9b04c7c2a9a83be5e28ba1.png" alt></li>
-</ul>
-<h2 id="5-实验"><a href="#5-实验" class="headerlink" title="5. 实验"></a>5. 实验</h2><ul>
-<li>表1：NTU-RGB+D数据集上基于骨架的动作识别性能比较。<br><img src="https://pic.downk.cc/item/5e9aa719c2a9a83be5990f4b.png" alt></li>
-<li>HDM05数据集上基于骨架的动作识别性能比较。<br><img src="https://pic.downk.cc/item/5e9aa719c2a9a83be5990f4e.png" alt></li>
-</ul>
-<h2 id="6-谱聚类补充"><a href="#6-谱聚类补充" class="headerlink" title="6. 谱聚类补充"></a>6. 谱聚类补充</h2><h3 id="6-1-谱聚类"><a href="#6-1-谱聚类" class="headerlink" title="6-1. 谱聚类"></a>6-1. 谱聚类</h3><ul>
-<li>将数据看作空间中的点</li>
-<li>切图：子图间边权重和尽可能低，子图内权重和尽可能高。</li>
-</ul>
-<h3 id="6-2-无向权重图"><a href="#6-2-无向权重图" class="headerlink" title="6-2. 无向权重图"></a>6-2. 无向权重图</h3><ul>
-<li>图G=(V,E)，wij为vi，vj的权重。任意点vi，度di为和它相连所有边的权重之和。di=∑wij</li>
-<li>度矩阵D只有对角线有值，对应第i行第j个点的度数。</li>
-<li>|A|:子集A中的个数，vol(A):=∑di(全部di的和)</li>
-</ul>
-<h3 id="6-3-相似矩阵"><a href="#6-3-相似矩阵" class="headerlink" title="6-3. 相似矩阵"></a>6-3. 相似矩阵</h3><ul>
-<li><p>在谱聚类，无直接给出邻接矩阵（边权重）</p>
-</li>
-<li><p>思想：较远的两点权重低，较近的高，可通过样本点距离度量的相似矩阵S获得邻接矩阵W</p>
-</li>
-<li><p>构建邻接矩阵W的方法：ϵ-邻近法，K邻近法和全连接法。</p>
-</li>
-<li><p>ϵ-邻近法：相似矩阵sij=||xi−xj|^2, 邻接矩阵W<br><img src="https://pic.downk.cc/item/5e9aa719c2a9a83be5990f52.png" alt></p>
-</li>
-<li><p>全连接法：可以选择不同的核函数（高斯核），相似矩阵和邻接矩阵相同<br><img src="https://pic.downk.cc/item/5e9aa719c2a9a83be5990f54.png" alt></p>
-</li>
-</ul>
-<h3 id="6-4-Laplace矩阵"><a href="#6-4-Laplace矩阵" class="headerlink" title="6-4. Laplace矩阵"></a>6-4. Laplace矩阵</h3><ul>
-<li>Laplace矩阵：L = D - W（D度矩阵，W邻接矩阵）</li>
-<li>对于任意向量f，有：<br><img src="https://pic.downk.cc/item/5e9aa793c2a9a83be59976ce.png" alt></li>
-</ul>
-<h3 id="6-5-无向图切图"><a href="#6-5-无向图切图" class="headerlink" title="6-5. 无向图切图"></a>6-5. 无向图切图</h3><ul>
-<li>图G(V,E)切k个子图A1，A2,…,Ak</li>
-<li>任意子图A，B，切图权重W(A,B) =∑wij(i∈A,j∈B)</li>
-<li>对于k个子图，切图cut定义为：<br><img src="https://pic.downk.cc/item/5e9aa793c2a9a83be59976d0.png" alt><br>A 为Ai的补集</li>
-<li>目标：子图内权重高，子图间权重低</li>
-</ul>
-<h3 id="6-6-切图聚类"><a href="#6-6-切图聚类" class="headerlink" title="6-6. 切图聚类"></a>6-6. 切图聚类</h3><ul>
-<li>RatioCut切图：对每个切图，不光考虑最小化cut，还同时考虑最大化每个子图点的个数。<br><img src="https://pic.downk.cc/item/5e9aa793c2a9a83be59976d2.png" alt></li>
-<li>引入指示向量hj∈{h1,h2,..hk}j=1,2,…k ，是一个n维向量。<br><img src="https://pic.downk.cc/item/5e9aa793c2a9a83be59976d4.png" alt></li>
-<li>对应的RatioCut函数表达式为：<br><img src="https://pic.downk.cc/item/5e9aa793c2a9a83be59976d6.png" alt></li>
-<li>优化目标argmintr(H^T LH) s.t.H^T H=I，找到k个最小的特征值。</li>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ul>
+<li>图1：我们方法的说明。图中的节点对应于手关节，虚线表示断开的边。提出的DG-STA算法在手部骨架图的时空域计算边缘权值并学习节点特征。<br><img src="https://pic.downk.cc/item/5e9e474ec2a9a83be524b2f5.jpg" alt><h3 id="骨架图初始化"><a href="#骨架图初始化" class="headerlink" title="骨架图初始化"></a>骨架图初始化</h3></li>
+<li>给定一个T帧视频，从每个帧中提取N个手关节来表示手的骨架。然后根据手部骨骼序列构造一个完全连通的骨架图G=（V，E）。设V={V（t，i）| t=1。，T，i=1。，N}表示节点集，其中v（t，i）表示时间步骤t处的第i手关节。节点特征由F={F（t，i）| t=1。，T，i=1。，N}，其中f（t，i）表示节点v（t，i）的特征向量。</li>
+<li>边集E中。空间边v（t，i）→v（t，j）（i ！=j）同时连接两个不同的节点。时间边v（t，i）→v（k，j）（t ！=k）在不同的时间步连接两个节点。自连接边v（t，i）→v（t，i）将节点与自身连接。<h3 id="基于时空注意的动态图形构建"><a href="#基于时空注意的动态图形构建" class="headerlink" title="基于时空注意的动态图形构建"></a>基于时空注意的动态图形构建</h3></li>
+<li>所提出的DG-STA由空间注意模型和时间注意模型组成，分别用于从手部骨架图中提取空间和时间信息。AS和AT都基于多头注意[34]。AS将初始节点特征F作为输入，并对其进行更新以编码空间信息。然后将更新后的节点特征反馈给AT以进一步学习时间信息。最后，将结果平均汇集到一个向量上，作为骨架图的特征表示进行分类。</li>
+<li>具体地说，给定骨架图中节点v（t，i）的输入特征f（t，i），第h空间注意头首先应用三个完全连接的层将f（t，i）分别映射到键向量、查询向量和值向量中，其表示为<br><img src="https://pic.downk.cc/item/5e9e4773c2a9a83be524c5d6.jpg" alt></li>
+<li>空间注意头分两步计算空间边缘和自连接边缘的权重。首先，它在同一时间步内计算节点的查询向量和关键向量之间的“标度点积”[34]。然后通过一个Softmax函数对结果进行规范化。这两个步骤被表述为：<br><img src="https://pic.downk.cc/item/5e9e477bc2a9a83be524ca08.jpg" alt><br>αh（t，i）—（t，j）是节点v（t，i）和v（t，j）之间的注意权重，用来衡量节点v（t，j）到节点v（t，i）之间信息的重要性。所有时间边的权重被设置为0，以阻止在时间域中传递的信息。</li>
+<li>fh（t，i）表示节点v（t，i）的空间注意特征。空间注意特征的计算机制实质上是图中每个节点在同一时间步长内向其他节点发送一些信息，然后根据学习到的边缘权值对接收到的信息进行聚合的过程。<br><img src="https://pic.downk.cc/item/5e9e4781c2a9a83be524cd79.jpg" alt></li>
+<li>空间注意模型最后将所有空间注意头所学习到的空间注意特征串接。<br><img src="https://pic.downk.cc/item/5e9e4786c2a9a83be524d0f2.jpg" alt></li>
+<li>时间注意模型将空间注意模型中的输出节点特征作为输入，然后将上述多头部注意机制应用于时间域。节点特征是从时间注意模型输出的，它编码了由手骨骼输入序列携带的空间和时间信息。我们将这些节点特征平均汇集到一个向量上，作为手势识别输入序列的特征表示。<h3 id="时空位置嵌入"><a href="#时空位置嵌入" class="headerlink" title="时空位置嵌入"></a>时空位置嵌入</h3></li>
+<li>从输入手骨骼的坐标中提取的原始节点特征F不包含描述节点对应于哪个手关节的空间身份信息和指示节点处于哪个时间步的时间信息。为了融合这些信息，我们提出了时空位置嵌入。</li>
+<li>具体来说，我们的时空位置嵌入由空间位置嵌入和时间位置嵌入两部分组成。空间的由N个向量组成，每个向量代表一个手关节。同时，时间向量由N×T个不同的向量组成，每个向量对应于手部骨架图中的一个节点。将特定节点的特征向量与对应的时空位置嵌入向量相加，再输入DG-STA。pS（i）表示第i个手关节的空间位置嵌入，pT（t，i）表示第i个手关节在第t时间步的时间位置嵌入。<br><img src="https://pic.downk.cc/item/5e9e478ec2a9a83be524d64f.jpg" alt><h3 id="有效实施"><a href="#有效实施" class="headerlink" title="有效实施"></a>有效实施</h3></li>
+<li>我们发现在没有域约束的情况下，注意力权重和特征的计算是简单的，这可以通过矩阵乘法运算来有效地实现。因此，我们提出了一个新的方案来促进DG-STA的实现。其主要思想是首先计算各节点间的标度点积矩阵，然后对矩阵进行时空掩模运算，使模型聚焦于时空域。</li>
+<li>所提出的空间遮罩操作将表示时间边缘的W中的每个元素的值设置为η（即接近负无穷大的数字），并保持其他元素的值不变。（也就是说，空间特征操作时把时间特征屏蔽，时间特征操作时把空间特征屏蔽掉）<br><img src="https://pic.downk.cc/item/5e9e4796c2a9a83be524d8b3.jpg" alt><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="实施细节"><a href="#实施细节" class="headerlink" title="实施细节"></a>实施细节</h3></li>
+<li>图3：提出的DG-STA的网络结构<br><img src="https://pic.downk.cc/item/5e9e479cc2a9a83be524dac1.jpg" alt></li>
+<li>我们将时空注意模型的头数设为8。query、key和value向量的维度d设置为32。</li>
+<li>将输入的手关节三维坐标投影到128维的初始节点特征中。然后将其加入相应的空间位置嵌入，并反馈到空间注意模型中，生成256维的节点特征。该节点特征被投影到128维的矢量中，矢量中加入相应的时间位置嵌入。时间注意模型将其作为输入，生成最终的节点特征。最后，我们将所有节点的特征集合到一个向量中，并将其输入到一个完全连通的层中进行分类。</li>
+<li>DHG-14/28数据集的准确率比较.<br><img src="https://pic.downk.cc/item/5e9e47a1c2a9a83be524dc99.jpg" alt></li>
+<li>SHREC’17轨迹数据集的精度比较。<br><img src="https://pic.downk.cc/item/5e9e47a6c2a9a83be524de50.jpg" alt></li>
 </ul>
 
       
@@ -250,7 +194,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/04/18/Si-GCN%20%EF%BC%9AStructure-induced%20Graph%20Convolution%20Network%20for%20Skeleton-based%20Action%20Recognition/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/04/21/Construct%20dynamic%20graphs%20for%20hand%20gesture%20recognition%20via%20spatial-temporal%20attention/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -266,19 +210,10 @@
   
   <nav class="article-nav">
     
-      <a href="/just-to.github.io/2020/04/21/Construct%20dynamic%20graphs%20for%20hand%20gesture%20recognition%20via%20spatial-temporal%20attention/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Construct dynamic graphs for hand gesture recognition via spatial-temporal attention
-          
-        </div>
-      </a>
     
-    
-      <a href="/just-to.github.io/2020/04/16/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="article-nav-link">
+      <a href="/just-to.github.io/2020/04/18/Si-GCN%20%EF%BC%9AStructure-induced%20Graph%20Convolution%20Network%20for%20Skeleton-based%20Action%20Recognition/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">从零开始搭建博客</div>
+        <div class="article-nav-title">Si-GCN ：Structure-induced Graph Convolution Network for Skeleton-based Action Recognition</div>
       </a>
     
   </nav>
