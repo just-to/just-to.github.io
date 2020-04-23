@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Python可变对象和不可变对象 |  Hexo
+    Understanding hand-object manipulation between actions,grasp types and attributes |  Hexo
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -36,7 +36,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-Python可变对象和不可变对象" class="article article-type-post" itemscope
+  <article id="post-Understanding hand-object manipulation between actions,grasp types and attributes" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -44,7 +44,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Python可变对象和不可变对象
+  Understanding hand-object manipulation between actions,grasp types and attributes
 </h1>
  
 
@@ -53,8 +53,8 @@
 
     
     <div class="article-meta">
-      <a href="/just-to.github.io/2020/04/22/Python%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1%E5%92%8C%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1/" class="article-date">
-  <time datetime="2020-04-22T15:54:58.679Z" itemprop="datePublished">2020-04-22</time>
+      <a href="/just-to.github.io/2020/04/23/Understanding%20hand-object%20manipulation%20between%20actions,grasp%20types%20and%20attributes/" class="article-date">
+  <time datetime="2020-04-23T15:02:00.016Z" itemprop="datePublished">2020-04-23</time>
 </a>
       
       
@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">631</span>
+            <span class="post-count">548</span>
         </span>
     </span>
 
@@ -98,28 +98,102 @@
       
 
       
-      <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li>首先要理解什么是可变对象和不可变对象，可变对象是指这个对象（变量）本身可以修改，而不可变对象一旦创建之后不可修改，只可重新赋值。Python中的可变对象和不可变对象有：</li>
-<li>可变对象：dict，list，set</li>
-<li>不可变对象：tuple，string，int，float，bool<ul>
-<li>例如，创建一个可变对象dict = {1,2,3}，我可以修改他某一个值或者append一个值，dict[0] = 1 是允许的；但是当一个不可变对象tuple = （1,2,3），是不可以修改他里面的值或者增加值的，只能另外赋值tuple = （1,2,4），这个操作意思是tuple不再指向（1,2,3）这个对象了，而指向（1,2,4）这个对象的地址，简单易懂？</li>
+      <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li>这篇论文主要探究的是手-物体操作（HOM）中，手势，物体属性以及动作三者之间的关系（contextual relationship）。</li>
+<li>如图，从二维的静态图片中，通过image detection能够检测到左右手和物体，通过监督学习分类手势和物体属性，动作，如果能够结合三者的关系（手势–动作–物体）进行训练，会提高检测（手势，动作）的精度。</li>
+</ul>
+<p><img src="https://pic.downk.cc/item/5ea19565c2a9a83be5255eff.png" alt></p>
+<ul>
+<li><p>在GTEA数据集中，标注了13种手势，9种物体属性，10种动作，主要思想是找到它们之间的上下文联系来提高精度。<br><img src="https://pic.downk.cc/item/5ea19565c2a9a83be5255f03.png" alt></p>
+</li>
+<li><p>论文贡献</p>
+<ul>
+<li>学习三者的上下文关系</li>
+<li>一个detection CNN识别手和物体</li>
 </ul>
 </li>
 </ul>
-<h2 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h2><ul>
-<li>可变对象的值改变后地址不变。若两个对象指向同一个地址时，ａ值改变ｂ值也会改变（地址不变）。</li>
-<li>不可变对象的值改变后指向的地址也改变了（指向新的值所在的地址，原值还在）。若两个对象指向同一个地址，ａ值改变（另外赋值），ｂ的值和地址都跟原来一样不变。</li>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><blockquote>
+<p>Ψ(A, G, O, H|I) =ΨF C (A, G, O) + ΨP C (G, O) + ΨSC (H, O)+ΨG(G, H|I) + ΨO(O|I) + ΨA(A|I)</p>
+</blockquote>
+<ul>
+<li>ΨF C (A, G, O) ：Functional context,（手势，物体）和动作之间的上下文关系</li>
+<li>ΨP C (G, O) ：Physical context，手势和物体之间的上下文关系</li>
+<li>ΨSC (H, O)：Spatial context，由于识别物体比识别手更困难，而且物体的大小和位置跟手的张开程度和朝向密切相关，所以是为了识别物体而建立的手和物体的联系。</li>
+<li>ΨG(G, H|I) ， ΨO(O|I) +，ΨA(A|I)：单个手势，物体，动作的visual evidence（识别可信度）。</li>
 </ul>
-<h2 id="作为函数参数传入"><a href="#作为函数参数传入" class="headerlink" title="作为函数参数传入"></a>作为函数参数传入</h2><ul>
-<li>Python中的参数传递中是引用传递，即传递实参的地址给形参。</li>
-<li>当传递的参数是可变参数时，改变函数内部的形参也会改变外面被传递的实参，我的理解为在传递时，形参指向实参所指向的地址，可变参数是可修改的，且形参和实参指向的地址是同一个，一个修改时另一个也同样变了。</li>
-<li>当传递的参数是不可变参数时，形参同样指向实参所指向的地址，只不过在进行修改操作时，由于不可变参数直接不可修改，形参会指向另一个地址，地址的值为修改的值。所以现在形参和实参所指向的地址不是同一个，自然形参的地址和值不会有影响。</li>
+<h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><ul>
+<li><p>手势：无监督聚类，从已有的手势类集中决定识别的手势类型。</p>
+</li>
+<li><p>物体属性：物体形状，硬度。</p>
+</li>
+<li><p>手和物体识别</p>
+</li>
+<li><p>手部分割：识别哪些像素属于手—方法：FCN（SegNet）</p>
+<ul>
+<li>输入：图片</li>
+<li>输出：hand probability map</li>
 </ul>
-<h2 id="函数默认参数"><a href="#函数默认参数" class="headerlink" title="函数默认参数"></a>函数默认参数</h2><ul>
-<li>一定要设定为不可变参数</li>
-<li>函数定义时默认参数就确定下来了，之后每次调用函数时默认参数都是同一个（理解为同一个地址），如果是可变参数时可能上一次的调用会修改地址中的值（比如append）。</li>
+</li>
+<li><p>hand regions and object regions—方法：RCNN（CaffeNet）</p>
+<ul>
+<li>分类：背景，左手，右手</li>
+<li>物体：bounding-box regression offsets</li>
 </ul>
-<p>参考 <a href="https://zhuanlan.zhihu.com/p/34395671" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34395671</a></p>
+</li>
+<li><p>分类训练</p>
+<ul>
+<li><p>GraspNet</p>
+<ul>
+<li>输入：hand regions and ground-truth grasp type</li>
+<li>输出：分类分数classification score</li>
+</ul>
+</li>
+<li><p>ObjectNet</p>
+<ul>
+<li>输入：object regions and ground-truth</li>
+<li>输出：classification score</li>
+</ul>
+</li>
+<li><p>ActionNet</p>
+<ul>
+<li>输入：image</li>
+<li>输出：classification score</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><ul>
+<li>手势—物体</li>
+</ul>
+<p><img src="https://pic.downk.cc/item/5ea19565c2a9a83be5255f06.png" alt></p>
+<ul>
+<li><p>手势—动作—物体<br><img src="https://pic.downk.cc/item/5ea19565c2a9a83be5255f08.png" alt></p>
+</li>
+<li><p>动作—手势<br><img src="https://pic.downk.cc/item/5ea19565c2a9a83be5255f0c.png" alt></p>
+</li>
+<li><p>手和物体识别</p>
+<ul>
+<li>hand and object detection(hand segmentation, hand and object bounding boxes)</li>
+</ul>
+</li>
+<li><p>手势识别</p>
+<ul>
+<li>GraspNet—GraspNet+object—our method(GraspNet+object+action)</li>
+</ul>
+</li>
+<li><p>物体属性识别</p>
+<ul>
+<li>ObjectNet—ObjectNet+grasp—our method</li>
+</ul>
+</li>
+<li><p>动作识别</p>
+<ul>
+<li>ActionNet-rgb(image-based)—context(grasp+object)—ours-rgb(rgb+grasp+object)</li>
+</ul>
+</li>
+</ul>
 
       
       <!-- reward -->
@@ -188,7 +262,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/04/22/Python%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1%E5%92%8C%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/04/23/Understanding%20hand-object%20manipulation%20between%20actions,grasp%20types%20and%20attributes/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -204,19 +278,10 @@
   
   <nav class="article-nav">
     
-      <a href="/just-to.github.io/2020/04/23/Understanding%20hand-object%20manipulation%20between%20actions,grasp%20types%20and%20attributes/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Understanding hand-object manipulation between actions,grasp types and attributes
-          
-        </div>
-      </a>
     
-    
-      <a href="/just-to.github.io/2020/04/22/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%8D%8A%E5%B0%8F%E6%97%B6%E6%BC%AB%E7%94%BB%E4%B8%AD%E5%9B%BD%E5%8F%B2/" class="article-nav-link">
+      <a href="/just-to.github.io/2020/04/22/Python%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1%E5%92%8C%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">读书笔记-半小时漫画中国史</div>
+        <div class="article-nav-title">Python可变对象和不可变对象</div>
       </a>
     
   </nav>
