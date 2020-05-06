@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    2020-5-5 leetcode刷题 |  Hexo
+    2020-5-6leetcode刷题 |  Hexo
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -36,7 +36,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-leetcode刷题_0505" class="article article-type-post" itemscope
+  <article id="post-leetcode刷题_0506" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -44,7 +44,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  2020-5-5 leetcode刷题
+  2020-5-6leetcode刷题
 </h1>
  
 
@@ -53,8 +53,8 @@
 
     
     <div class="article-meta">
-      <a href="/just-to.github.io/2020/05/05/leetcode%E5%88%B7%E9%A2%98_0505/" class="article-date">
-  <time datetime="2020-05-05T13:58:56.286Z" itemprop="datePublished">2020-05-05</time>
+      <a href="/just-to.github.io/2020/05/06/leetcode%E5%88%B7%E9%A2%98_0506/" class="article-date">
+  <time datetime="2020-05-06T08:39:35.270Z" itemprop="datePublished">2020-05-06</time>
 </a>
       
       
@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">526</span>
+            <span class="post-count">637</span>
         </span>
     </span>
 
@@ -98,27 +98,27 @@
       
 
       
-      <h2 id="205-Isomorphic-Strings"><a href="#205-Isomorphic-Strings" class="headerlink" title="205.Isomorphic Strings"></a>205.Isomorphic Strings</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><img src="https://pic.downk.cc/item/5eb11fccc2a9a83be5b3a7f3.jpg" alt></p>
+      <h2 id="5-Longest-Palindromic-Substring"><a href="#5-Longest-Palindromic-Substring" class="headerlink" title="5.Longest Palindromic Substring"></a>5.Longest Palindromic Substring</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><img src="./images/1588748763141.png" alt="enter description here"></p>
 <h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><ul>
-<li>创建一个字典，以s为基准，遍历s中的每个字母，如果是第一次发现则记录到字典中，字典的key是s对应的字母，字典的value是t对应的字母，不是第一次发现（字典里存在这个字母）则在字典中查到这个字母的value值，与现在的t的字母进行比较，不相等返回false。</li>
-<li>注意以s为基准和以t为基准去创建字典是不一样的，如例2用t为基准会返回false，所以需要判断以s和t为基准两个结果。</li>
+<li>最长回文子串。思路是遍历每个字母，然后以他为中心向两边扩展，找到最长的子串。</li>
+<li>需要注意的是回文串有两种形状。例1的‘CBABC’，中心对称形状。是以A为中心，判断两边的字母是否相等。例2的‘ABCCBA’，轴对称形状，需要以CC为中心，向两边拓展。</li>
+<li>创建一个空字符串palindromic，遍历每个字母，找到中心对称的回文串（以自己为中心），和轴对称的回文串（以自己和下一位为中心），比palindromic更长则更新palindromic.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">longestPalindromi</span> <span class="title">c</span><span class="params">(self,s)</span>:</span></span><br><span class="line"></span><br><span class="line">	palindromic = <span class="string">''</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):							<span class="comment"># 遍历每个字母</span></span><br><span class="line">	</span><br><span class="line">		len1 = len(self.getlongestpalind(s,i,i))		<span class="comment"># 判断中心对称回文串的长度</span></span><br><span class="line">		<span class="keyword">if</span> len1 &gt; len(palindromic):</span><br><span class="line">			palindromic = self.getlongsetpalind(s,i,i))</span><br><span class="line">			</span><br><span class="line">		len2 = len(self.getlongestpalind(s,i,i))		<span class="comment"># 判断轴对称回文串的长度</span></span><br><span class="line">		<span class="keyword">if</span> len2 &gt; len(palindromic):</span><br><span class="line">			palindromic = self.getlongsetpalind(s,i,i+<span class="number">1</span>))</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getlongestpalind</span><span class="params">(self,s,l,r)</span>:</span>			<span class="comment"># 以l，r下标的字母为中心的最长回文串</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> l &gt;= <span class="number">0</span> <span class="keyword">and</span> r &lt; len(s) <span class="keyword">and</span> s[l] == s[r]:	<span class="comment"># 下标未溢出且左边等于右边</span></span><br><span class="line">		l -= <span class="number">1</span></span><br><span class="line">		r += <span class="number">1</span></span><br><span class="line">		</span><br><span class="line">	<span class="keyword">return</span> s[l+<span class="number">1</span>:r]		<span class="comment"># l+1是因为经过上面的循环后l和r对应的字母不相等</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isIsomaarphic</span><span class="params">(self,s,t)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> len(s) != len(t):</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">	<span class="keyword">return</span> self.halfIsom(s,t) <span class="keyword">and</span> self.halfIsom(t,s)</span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">halfIsom</span><span class="params">(self,s,t)</span>:</span></span><br><span class="line">	lookup = &#123;&#125;</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):					<span class="comment"># 遍历s中的字母</span></span><br><span class="line">		<span class="keyword">if</span> s[i] <span class="keyword">not</span> <span class="keyword">in</span> lookup:					<span class="comment"># 若没有则加入字典 </span></span><br><span class="line">			lookup[s[i]] = t[i]					<span class="comment"># 字典的值为t对应位置的字母</span></span><br><span class="line">		<span class="keyword">elif</span> lookup[s[i]] != t[i]:				<span class="comment"># 字典有，且字典中的值不等于当前t[i]的值</span></span><br><span class="line">			<span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
 <hr>
-<h2 id="206-Reverse-Linked-List"><a href="#206-Reverse-Linked-List" class="headerlink" title="206.Reverse Linked List"></a>206.Reverse Linked List</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p><img src="https://pic.downk.cc/item/5eb1525ec2a9a83be5e9e581.jpg" alt></p>
+<h2 id="219-Contains-Duplicate-II"><a href="#219-Contains-Duplicate-II" class="headerlink" title="219.Contains Duplicate II"></a>219.Contains Duplicate II</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p><img src="./images/1588751072891.png" alt="enter description here"></p>
 <h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><ul>
-<li>反转链表。创建一个结点prev，prev.next指向head.head.next指向prev.next（prev.next更改前的指向）。通俗地理解是每次总是在头结点prev后面插入结点（prev.next=head），插入的结点的next(head.next)指向还未插入前prev链表中的prev.next（已经占了别人第二的位置，别人在你后面了），即head.next = prev.next。完成插入，head指针指向下一个结点。</li>
+<li>这道题的意思是列表中重复的值的距离不超过k，则返回true，超过k返回false。</li>
+<li>建立一个字典dict，遍历每个索引和值（用enumerate），判断字典是否有这个值，第一次出现则存进字典中，如果字典有值那么要比较字典中的value值与当前值索引的差是否超过k。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ContainsNearbyDuplicate</span><span class="params">(self,nums,k)</span>:</span></span><br><span class="line"></span><br><span class="line">	dict = &#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> i,num <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">	</span><br><span class="line">		<span class="keyword">if</span> num <span class="keyword">not</span> <span class="keyword">in</span> dict:</span><br><span class="line">			dict[num] = i</span><br><span class="line">			</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">if</span> i - dict[num] &lt;= k:</span><br><span class="line">				reuturn <span class="literal">True</span></span><br><span class="line">			dict[num] = i</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverseList</span><span class="params">(self,head)</span>:</span></span><br><span class="line">	prev = ListNode(float(<span class="string">'-inf'</span>))</span><br><span class="line">	<span class="keyword">while</span> head:</span><br><span class="line">		prev.next, head.next, head = head, prev.next, head.next  <span class="comment"># 第一个和第二个置换必须同步进行</span></span><br><span class="line">	<span class="keyword">return</span> prev.next</span><br></pre></td></tr></table></figure>
-
 <hr>
-<h2 id="217-Contains-Duplicates"><a href="#217-Contains-Duplicates" class="headerlink" title="217.Contains Duplicates"></a>217.Contains Duplicates</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p><img src="https://pic.downk.cc/item/5eb1582bc2a9a83be5f08fa8.jpg" alt></p>
+<h2 id="226-Invert-Binary-Tree"><a href="#226-Invert-Binary-Tree" class="headerlink" title="226.Invert Binary Tree"></a>226.Invert Binary Tree</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p><img src="./images/1588753521139.png" alt="enter description here"></p>
 <h3 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h3><ul>
-<li>第一种方法：利用字典dict。判断这个数是否在字典中，若没有则加入到字典，若有则返回true。</li>
-<li>第二种方法：先对链表排序sort（），如果当前值等于后一位的值返回true（nums[i]==nums[i+1]）。只写第二种方法的代码：</li>
+<li>这道题的意思是对称翻转二叉树，可以看例子所示。要用到递归的思想。对于每颗子树（假设只有左父右结点），需要将左右结点对调。</li>
+<li>递归的思想是先从上到下，一直到叶子结点（不做任何处理），再从下到上。例如上面的二叉树，递归到1,3，是叶子结点，返回到2,2不是叶子结点，左右结点对调（1,3对调），同理7（6,9对调），再返回到根结点4，2和7对应的左右子树对调。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">invertTree</span><span class="params">(self,root)</span>:</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> root <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">		root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">containDuplicate</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">	nums.sort()</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)<span class="number">-1</span>):</span><br><span class="line">		<span class="keyword">if</span> nums[i] == nums[i+<span class="number">1</span>]:</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->
@@ -187,7 +187,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/05/05/leetcode%E5%88%B7%E9%A2%98_0505/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/05/06/leetcode%E5%88%B7%E9%A2%98_0506/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -203,19 +203,10 @@
   
   <nav class="article-nav">
     
-      <a href="/just-to.github.io/2020/05/06/leetcode%E5%88%B7%E9%A2%98_0506/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            2020-5-6leetcode刷题
-          
-        </div>
-      </a>
     
-    
-      <a href="/just-to.github.io/2020/04/23/Understanding%20hand-object%20manipulation%20between%20actions,grasp%20types%20and%20attributes/" class="article-nav-link">
+      <a href="/just-to.github.io/2020/05/05/leetcode%E5%88%B7%E9%A2%98_0505/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Understanding hand-object manipulation between actions,grasp types and attributes</div>
+        <div class="article-nav-title">2020-5-5 leetcode刷题</div>
       </a>
     
   </nav>
