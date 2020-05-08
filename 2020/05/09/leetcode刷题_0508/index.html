@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    2020-5-7leetcode刷题 |  Hexo
+    2020-5-8leetcode刷题 |  Hexo
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -36,7 +36,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-leetcode刷题_0507" class="article article-type-post" itemscope
+  <article id="post-leetcode刷题_0508" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -44,7 +44,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  2020-5-7leetcode刷题
+  2020-5-8leetcode刷题
 </h1>
  
 
@@ -53,8 +53,8 @@
 
     
     <div class="article-meta">
-      <a href="/just-to.github.io/2020/05/07/leetcode%E5%88%B7%E9%A2%98_0507/" class="article-date">
-  <time datetime="2020-05-07T07:49:34.242Z" itemprop="datePublished">2020-05-07</time>
+      <a href="/just-to.github.io/2020/05/09/leetcode%E5%88%B7%E9%A2%98_0508/" class="article-date">
+  <time datetime="2020-05-08T16:14:01.811Z" itemprop="datePublished">2020-05-09</time>
 </a>
       
       
@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">603</span>
+            <span class="post-count">602</span>
         </span>
     </span>
 
@@ -98,30 +98,32 @@
       
 
       
-      <h2 id="231-2的幂"><a href="#231-2的幂" class="headerlink" title="231.2的幂"></a>231.2的幂</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><img src="https://pic.downk.cc/item/5eb3859ac2a9a83be5edeb89.jpg" alt></p>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><ul>
-<li>这题比较简单，判断这个数是否是2的幂次方。</li>
-<li>用这个数除于2，如果余数为0，取它的商然后继续除2，重复直至不能整除2，如果最后这个数为1返回true。</li>
+      <h2 id="235-二叉搜索树的公共祖先"><a href="#235-二叉搜索树的公共祖先" class="headerlink" title="235.二叉搜索树的公共祖先"></a>235.二叉搜索树的公共祖先</h2><ul>
+<li>题目</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPowerOfTwo</span><span class="params">(self,n)</span>:</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> n &lt; <span class="number">1</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">		</span><br><span class="line">	<span class="keyword">while</span> n % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">		n /= <span class="number">2</span></span><br><span class="line">		</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">True</span> <span class="keyword">if</span> n == <span class="number">1</span> <span class="keyword">else</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="234-回文链表"><a href="#234-回文链表" class="headerlink" title="234.回文链表"></a>234.回文链表</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p><img src="https://pic.downk.cc/item/5eb3ae4cc2a9a83be514ce98.jpg" alt></p>
-<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><ul>
-<li>回文数有两种形式。类似于‘1221’轴对称，还有类似于‘12321’中心对称形式。回文链表前半段和后半段对称相等。采用栈的方法。</li>
-<li>第一步，入栈。创建一个栈stack，设立指针slow，fast，fast走两步，slow走一步。这样当fast走到最后时slow走到中间。当fast和fast.next未空时，将slow值入栈。</li>
-<li>需要注意的是，轴对称的回文数前半段和后半段各占一半，中心对称的回文数中间多了一个数。‘1221’最后fast指向空，slow指向后面的2，栈s[1,2]，下一步是比较slow的值与出栈的值是否相等。‘12321’最后fast指向1，slow指向3，这时判断fast.next为空不能入栈，栈s[1,2]，如果直接比较slow的值3和出栈的值2是不同的，需要将slow指向下一位也就是后面的2再比较。</li>
-<li>现在栈里面有前半段的值，slow指向后半段的第一个值。比较slow的值和出栈的值（stack,pop()），如果不相等返回false，相等则slow指向下一位继续比较直至最后为空。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span><span class="params">(self,head)</span>:</span></span><br><span class="line"></span><br><span class="line">		stack = []</span><br><span class="line">		fast = slow = ListNode(<span class="number">0</span>)  <span class="comment">#不能直接fast=slow=head链表</span></span><br><span class="line">		fast = slow = head</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> fast <span class="keyword">and</span> fast.next:</span><br><span class="line">			stack.append(slow.val)</span><br><span class="line">			slow = slow.next</span><br><span class="line">			fast = fast.next.next</span><br><span class="line">			</span><br><span class="line">		<span class="keyword">if</span> fast:</span><br><span class="line">			slow = slow.next</span><br><span class="line">			</span><br><span class="line">		<span class="keyword">while</span> slow:</span><br><span class="line">			top = stack.pop()</span><br><span class="line">			<span class="keyword">if</span> slow.val != top:</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">			slow = slow.next</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-</li>
+<p><img src="https://pic.downk.cc/item/5eb4cfc0c2a9a83be52b4a8e.jpg" alt></p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><ul>
+<li>首先明确这是BST二叉搜索树，也就是左子树&lt;根结点&lt;右子树。那么如果是p，q的公共祖先pointer，p，q是在公共祖先的两侧或者p，q其中一个结点是祖先。</li>
+<li>从根结点开始遍历，创建一个结点pointer指向根结点。若p，q都大于pointer，pointer移向右子结点，若都小于移向左子结点。剩下的情况（一左一右或者其中一个相等）返回pointer。</li>
 </ul>
-<hr>
-<h2 id="盛最多水的容器"><a href="#盛最多水的容器" class="headerlink" title="盛最多水的容器"></a>盛最多水的容器</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p><img src="https://pic.downk.cc/item/5eb3bba3c2a9a83be5247a5c.jpg" alt></p>
-<h3 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h3><ul>
-<li>这道题的意思是找到最大的面积，其中宽为列表两个值的索引之差，高为较小的值。</li>
-<li>思路：从两边向中间靠拢。设置left，right标记列表的头和尾，rusult记录最大面积。，当left&lt;right计算当前面积，如果大于result则更新result。</li>
-<li>left和right谁的值小，谁向中间移动一位。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxArea</span><span class="params">(self,height)</span>:</span></span><br><span class="line">	left, right = <span class="number">0</span>, len(height)<span class="number">-1</span></span><br><span class="line">	result = <span class="number">0</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> left &lt; right:</span><br><span class="line">		water = min(height[left],height[right]) * (right - left)</span><br><span class="line">		<span class="keyword">if</span> water &gt; result:</span><br><span class="line">			result = water</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> height[left] &lt; height[right]:</span><br><span class="line">			left += <span class="number">1</span></span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			right -= <span class="number">1</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def lowestCommonAncestor(self,root,p,q):</span><br><span class="line">	pointer &#x3D; TreeNode()</span><br><span class="line">	pointer &#x3D; root</span><br><span class="line">	while pointer:</span><br><span class="line"></span><br><span class="line">		if p.val &gt; pointer.val and q.val &gt; pointer.val:</span><br><span class="line">			pointer &#x3D; pointer.right</span><br><span class="line"></span><br><span class="line">		elif p.val &lt; pointer.val and q.val &lt; pointer.val:</span><br><span class="line">			pointer &#x3D; pointer.left</span><br><span class="line"></span><br><span class="line">		else:</span><br><span class="line">			return pointer</span><br></pre></td></tr></table></figure>
 
-</li>
+<hr>
+<h2 id="242-有效的字母异位词"><a href="#242-有效的字母异位词" class="headerlink" title="242.有效的字母异位词"></a>242.有效的字母异位词</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><img src="https://pic.downk.cc/item/5eb4f867c2a9a83be5536b2f.jpg" alt></p>
+<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><ul>
+<li>简单的说，这道题判断t是否是s的乱序。首先判断它们的长度是否相同。</li>
+<li>需要一个字典，存入s中的所有值，当s中的字母未在dict中，加入到dict中，赋值为1，若已经出现过则赋值+1.</li>
+<li>遍历t中的字母，如果不在dict中返回false，在字典中但是对应字母的value值&lt;=0（说明t的对应字母出现的次数比s多）返回false，如果在dict中且value值&gt;0则将dict[n] -= 1.</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">def isAnagram(self,s,t):</span><br><span class="line"></span><br><span class="line">	if len(s) !&#x3D; len(t):</span><br><span class="line">		return False</span><br><span class="line"></span><br><span class="line">	dict &#x3D; &#123;&#125;</span><br><span class="line">	for num in s:</span><br><span class="line">		if num in dict:</span><br><span class="line">			dict[num] +&#x3D; 1</span><br><span class="line">		else:</span><br><span class="line">			dict[num] &#x3D;1</span><br><span class="line"></span><br><span class="line">	for n in t:</span><br><span class="line">		if n not in dict:</span><br><span class="line">			return False</span><br><span class="line">		elif dict[n] &lt;&#x3D; 0:</span><br><span class="line">			return False</span><br><span class="line">		else:</span><br><span class="line">			dict[n] -&#x3D; 1</span><br><span class="line"></span><br><span class="line">	return True</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="12-整数转罗马数字"><a href="#12-整数转罗马数字" class="headerlink" title="12.整数转罗马数字"></a>12.整数转罗马数字</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p><img src="https://pic.downk.cc/item/5eb4fc72c2a9a83be557ef08.jpg" alt></p>
+<h3 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h3><ul>
+<li>建立两个列表，values存整数，numerals存对应的罗马数字。注意需要把比如900，400，90，40….这些比较特殊的也放进去。</li>
+<li>可以这样想，num值是由value列表里面的值相加起来的，所以遍历values里面的值values[i]，当num大于这个值，就减去这个值,同时也说明num能拆出来一个values[i],字符串result加上numerials对应索引的罗马值。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def intToRoman(self,num):</span><br><span class="line">	values &#x3D; [1000,900,500,400,100,90,50,40,10,9,5,4,1]</span><br><span class="line">	numerials &#x3D; [&#39;M&#39;,&#39;CM&#39;,&#39;D&#39;,&#39;CD&#39;,&#39;C&#39;,&#39;XC&#39;,&#39;L&#39;,&#39;XL&#39;,&#39;X&#39;,&#39;IX&#39;,&#39;V&#39;,&#39;IV&#39;,&#39;I&#39;]</span><br><span class="line"></span><br><span class="line">	result &#x3D; &#39;&#39;</span><br><span class="line"></span><br><span class="line">	for i in range(len(values)):</span><br><span class="line">		if num &gt;&#x3D; values[i]:</span><br><span class="line">			num -&#x3D; values[i]</span><br><span class="line">			result +&#x3D; numerials[i]</span><br><span class="line"></span><br><span class="line">	return result</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->
@@ -190,7 +192,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/05/07/leetcode%E5%88%B7%E9%A2%98_0507/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/05/09/leetcode%E5%88%B7%E9%A2%98_0508/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -206,19 +208,10 @@
   
   <nav class="article-nav">
     
-      <a href="/just-to.github.io/2020/05/09/leetcode%E5%88%B7%E9%A2%98_0508/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            2020-5-8leetcode刷题
-          
-        </div>
-      </a>
     
-    
-      <a href="/just-to.github.io/2020/05/06/leetcode%E5%88%B7%E9%A2%98_0506/" class="article-nav-link">
+      <a href="/just-to.github.io/2020/05/07/leetcode%E5%88%B7%E9%A2%98_0507/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">2020-5-6leetcode刷题</div>
+        <div class="article-nav-title">2020-5-7leetcode刷题</div>
       </a>
     
   </nav>
