@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    2020-5-13leetcode刷题 |  Hexo
+    论文笔记Learning object-action relations from bimanual human demonstration using graph network |  Hexo
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -36,7 +36,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-leetcode刷题_0513" class="article article-type-post" itemscope
+  <article id="post-论文笔记Learning object-action relations from bimanual human demonstration using graph network" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -44,7 +44,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  2020-5-13leetcode刷题
+  论文笔记Learning object-action relations from bimanual human demonstration using graph network
 </h1>
  
 
@@ -53,8 +53,8 @@
 
     
     <div class="article-meta">
-      <a href="/just-to.github.io/2020/05/13/leetcode%E5%88%B7%E9%A2%98_0513/" class="article-date">
-  <time datetime="2020-05-13T08:26:59.259Z" itemprop="datePublished">2020-05-13</time>
+      <a href="/just-to.github.io/2020/06/04/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0Learning%20object-action%20relations%20from%20bimanual%20human%20demonstration%20using%20graph%20network/" class="article-date">
+  <time datetime="2020-06-04T14:29:12.639Z" itemprop="datePublished">2020-06-04</time>
 </a>
       
       
@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">343</span>
+            <span class="post-count">2.7k</span>
         </span>
     </span>
 
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">9 min</span>
         </span>
     </span>
 </div>
@@ -98,55 +98,57 @@
       
 
       
-      <h2 id="290-单词规律"><a href="#290-单词规律" class="headerlink" title="290.单词规律"></a>290.单词规律</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><img src="https://pic.downk.cc/item/5ebba021c2a9a83be51a6f5f.jpg" alt></p>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><ul>
-<li>判断pattern和str是不是一一对应的关系。首先从str切出每个单词出来。用split（）函数。</li>
-<li>建立两个字典hashmap：pattern和str的映射，和mapval：str出现过的单词(示例4，虽然pattern和str的映射能对应上，但是str的结构跟pattern不同)。</li>
-<li>循环pattern：<ul>
-<li>如果pattern[i]没在hashmap中：<ul>
-<li>第一种情况：words之前出现过这个单词（示例4）<ul>
-<li>返回false</li>
-</ul>
+      <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li><p>提供了双手演示的动作分类框架。从原始RGB-D视频提取物体几何动作关系，建立基于图的分类器。</p>
 </li>
-<li>第二种情况：没在hashmap也没在valmap<ul>
-<li>hashmap[pattern[i]] = words[i]</li>
-<li>valmap[words[i]] = True</li>
-</ul>
+<li><p>图1：数据集：来自数据集的3个示例性RGB-D图像（为了更好的清晰度而编辑的图像）；特征提取：三级处理流水线的中间结果和最终结果，一个场景图；分类：基于场景图对右手（RH）和左手（LH）执行的动作进行预测的图形网络分类器。</p>
 </li>
 </ul>
-</li>
-<li>如果在：<ul>
-<li>如果hashmap和words没有对应：<ul>
-<li>返回false<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wordPattern</span><span class="params">(self,pattern,str)</span>:</span></span><br><span class="line">	words = str.split(<span class="string">' '</span>)</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> len(words) != len(pattern):</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">		</span><br><span class="line">	hashmap = &#123;&#125;</span><br><span class="line">	mapval = &#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(len(pattern)):</span><br><span class="line">		<span class="keyword">if</span> pattern[i] <span class="keyword">in</span> hashmap:</span><br><span class="line">			<span class="keyword">if</span> hashmap[pattern[i]] != words[i]:</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">				</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">if</span> words[i] <span class="keyword">in</span> mapval:</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">			</span><br><span class="line">			hashmap[pattern[i]] = words[i]</span><br><span class="line">			mapval[words[i]] = <span class="literal">True</span></span><br><span class="line">			</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="326-3的幂"><a href="#326-3的幂" class="headerlink" title="326.3的幂"></a>326.3的幂</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p><img src="https://pic.downk.cc/item/5ebbac3bc2a9a83be525cb29.jpg" alt></p>
-<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPowerOfThree</span><span class="params">(self,n)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> n ==<span class="number">1</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">	<span class="keyword">elif</span> n &lt;= <span class="number">2</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">		</span><br><span class="line">	<span class="keyword">while</span> n &gt;<span class="number">3</span>:</span><br><span class="line">		<span class="keyword">if</span> n % <span class="number">3</span> == <span class="number">0</span>:</span><br><span class="line">			n /= <span class="number">3</span></span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">		</span><br><span class="line">	<span class="keyword">if</span> n ==<span class="number">3</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="342-4的幂"><a href="#342-4的幂" class="headerlink" title="342.4的幂"></a>342.4的幂</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p><img src="https://pic.downk.cc/item/5ebbabfcc2a9a83be5257dae.jpg" alt></p>
-<h3 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h3><ul>
-<li><p>先判断num大于等于4的</p>
+<p><img src="https://pic.downk.cc/item/5ed8f730c2a9a83be57f73e0.jpg" alt></p>
 <ul>
-<li>如果能整除4<ul>
-<li>取商继续整除</li>
-<li>不能整除返回false</li>
+<li>图2：从我们提议的数据集的示范性记录。第一排：准备早餐麦片，切一根香蕉，倒进碗里，然后是牛奶和麦片。第二排：在碗里搅拌，同时从瓶子里往碗里倒水。第三排：通过拧下并卸下螺钉来拆卸硬盘驱动器</li>
 </ul>
+<p><img src="https://pic.downk.cc/item/5ed8f748c2a9a83be57f8cbf.jpg" alt></p>
+<ul>
+<li>图3：三级处理管道示意图。输入：RGB-D图像。输出：场景图。第一阶段：二维预处理，从RGB图像中计算二维物体边界框和人体姿态，将深度图像转发到第二阶段。第二阶段：三维预处理，计算三维物体边界框，跟踪物体实例，平滑由深度图像产生的噪声。第三阶段：对象关系处理，评估每对对象之间的空间关系，构建场景图。对于每个阶段，输入在左边框上，输出在右边框上。</li>
+</ul>
+<p><img src="https://pic.downk.cc/item/5ed8f75ac2a9a83be57fa35e.jpg" alt></p>
+<ul>
+<li>图4：动作分类器的结构，一个编码-处理-解码图网络有10个处理步骤。输入是一个场景图Gin（这里有3个节点），它具有边属性e（关系）和节点属性v（对象）。全球属性u输出图的输出说明了动作的预测概率分布。我们的分类器不使用灰显的属性。编码器和解码器以及核心都使用多层感知器（MLP）的3个实例，其参数化如其每个更新函数φe、φv、a和dφu所示。core部分对每个聚集函数ρ∈{ρe→v、ρv→u、ρe→u}使用和函数。解码后立即应用一个附加层以将潜在大小缩放到u的实际大小。应用softmax得到概率分布。</li>
+</ul>
+<p><img src="https://pic.downk.cc/item/5ed8f768c2a9a83be57fb971.jpg" alt></p>
+<ul>
+<li>图5：如何构造场景图（左）的时间连接的示例（右侧每个场景图的相应视频帧）。为了简单起见，仅考虑了3个帧（k-2、k-1、k）。时间边用绿色表示，并在一系列帧上跟踪一个对象实例。</li>
+</ul>
+<p><img src="https://pic.downk.cc/item/5ed8f776c2a9a83be57fd1bc.jpg" alt></p>
+<ul>
+<li>图6：通过在一个完整的例子上对每一帧中的右手（RHpred）和左手（LHpred）的分类器的顶部预测进行可视化的定性评估，记录在对应的真值（rhtrue和lhrue）旁边。同一类的连续预测被合并成一种颜色的动作段。每一种颜色都描绘了一种特定的动作： idle, approach, retreat, lift, place, stir, hold, and pour。</li>
+</ul>
+<p><img src="https://pic.downk.cc/item/5ed8f785c2a9a83be57feb59.jpg" alt></p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>在下面的小节中详细描述了图1中的3个贡献。首先，我们描述了在III-A小节中为训练分类器而收集的RGB-D数据集，在III-B小节中，我们提出了一个以RGB-D数据为输入并构建场景图的特征提取流水线。场景图中的节点对对象类（包括手）进行编码，边对两个对象之间的关系进行编码。使用目标检测框架检测目标，而使用人体姿势估计框架检测手，两者均以RGB图像为输入。最后，在第三部分C，我们介绍了本文的主要贡献。为了学习对象-动作关系，即场景图和执行动作之间的关系，我们采用了一种图形网络分类器，这是一种设计用于操作可变大小图形的机器学习构建块。</p>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><ul>
+<li>双手动作序列RGB-D视频数据集.记录了6个人操作9个不同任务。一个注释器手动标记整个数据集帧，每只手一次，在A={idle，approach，retract，lift，place，hold，stive，pour，cut，drink，wipe，hammer，saw，screw}中有14个可能的动作类。12个对象类是O = {cup, bowl,whisk, bottle, banana, cutting board, knife, sponge, hammer,saw, wood, screwdriver}</li>
+</ul>
+<h3 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h3><ul>
+<li><p>图3示出了整个处理管道的示意图。简要概述：管道的输入是连续的RGB-D图像，但是每次管道中只输入一个RGB-D图像。在第一阶段使用RGB图像，在第二阶段之前不需要深度图像。管道的输出是一个场景图，其中所有检测到的对象实例都表示为节点，并且每对对象之间的所有现有关系都被编码到边中。</p>
+</li>
+<li><p>管道中的第一个阶段是2D预处理，其中使用YOLO[29]检测对象（在我们的数据集中的对象上进行训练），使用OpenPose[30]通过馈送RGB图像来检测人类的手。OpenPose提供的手关键点用于计算每只手的二维边界框。因此，该阶段输出YOLO检测到的对象和OpenPose检测到的手的2D边界框列表。注意，手在下面被视为任何物体。</p>
+</li>
+<li><p>第二级执行3D预处理，其中第一级的数据与从深度图像导出的点云一起使用以获取对象的3D边界框。这是通过仅对由2D边界框勾勒出的点云的一部分进行聚类来实现的，并且假设在点计数方面最大的簇属于检测到的对象。该簇的最小和最大范围生成三维边界框。由于深度图像受到高频噪声的影响，而高频噪声直接传递到三维边界盒，因此该阶段还通过对每个对象过去观测到的三维边界盒的参数应用高斯滤波器来执行平滑。此阶段的输出是由全局唯一对象实例标识符丰富的三维对象边界框。</p>
+</li>
+<li><p>第三阶段是对象关系处理。前一阶段的3D边界框用于确定给定对象对存在哪些空间关系。我们考虑了Ziaeetabar等人的15个空间关系。即R={接触，上面，下面，左边，右边，前面，后面，里面，包围，一起移动，一起停止，一起固定移动，靠近，分开，稳定}。然而，与它们的表述相反，没有使用例外条件。这个阶段的输出是一个场景图，其中的节点表示对象实例，而边缘编码它们之间的空间关系。</p>
 </li>
 </ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li><p>为了从RGB-D视频中学习对象的动作关系，我们使用了图网络分类器，使用从特征提取管道返回的场景图。图网络是一种机器学习的构建块，它对可以排列成图的属性进行操作。Battaglia等人[12] 定义图G是一个 三元组G=（u，V，E），其中ui是图的全局属性，V是图中的节点集，E是边集。每一个va∈V是一个节点属性，每一个e∈E是一个3元组e=（ea，s，r）。ea是边属性，s和r是V中发送方和接收方节点的索引。图网络以这样一个图作为输入，通过更新它的属性来处理它，然后返回它。处理分为3步进行，应用以下函数：（1）边更新函数φe；（2）边聚集函数ρ(e→v)和节点更新函数φv；（3）一个节点聚集函数ρ(v→u)和一个全局属性ρ(e→u)，和一个全局更新函数φu。它描述了一个完整的图网络块，但是根据使用的更新或聚合函数，可能有不同类型的块。</p>
 </li>
-<li><p>如果能够整除的经过上面的循环之后num==1，加上本来num==1时也成立，返回true</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPowerOfFour</span><span class="params">(self,num)</span>:</span></span><br><span class="line">	whilr n &gt;= <span class="number">4</span>:</span><br><span class="line">		<span class="keyword">if</span> num % <span class="number">4</span> == <span class="number">0</span>:</span><br><span class="line">			num /= <span class="number">4</span></span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">			</span><br><span class="line">	<span class="keyword">if</span> num == <span class="number">1</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
-
-
+<li><p>我们对我们的模型使用了图4所示的编码-处理-解码，在图网络库[12]中提供了参考实现。该模型分别由编码器和解码器两个独立的图形网络块和核心的一个完整的图形网络块组成。对于所有3个块，使用多层感知器（MLPs）作为边更新函数φe、节点更新函数φv和全局更新函数φu。对于聚集函数ρe→v、ρv→u和ρe→u使用和函数。每个图网络块中的所有MLP都被参数化为2层，每层256个神经元。编码-处理-解码模型中的核心执行了10个处理步骤。这些参数是在评估了多个测试序列后经验性确定的，每个测试序列都采用不同的配置。我们的分类器的输入是一个场景图Gin，其中边属性对关系进行编码，节点属性对对象类进行编码。输出是所有动作的概率分布，编码在更新的全局属性u‘。全局属性u和更新的边和节点属性e’和v‘未使用。</p>
+</li>
+<li><p>在我们的例子中，所有数据都是符号化的，因此一个one-hot编码被用于操作、对象和关系。全局属性对一只手执行的动作进行编码。这将导致14个被考虑的动作的一个one-hot编码u∈{0,1}A |=14。节点属性va∈V编码12个YOLO已知的对象类和每只手一个对象类。总共有14个物体对象类，va∈{0,1}| O |+2=14。所有的关系都被编码为边缘属性ea∈{0,1}| R |+1=16，15表示空间关系，加上1表示时间关系。</p>
+</li>
+<li><p>由于来自YOLO的噪声深度图像和偶尔的错误分类，某些场景图可能不明确或不代表当前在帧中执行的操作。为了减轻这种影响，我们为当前帧（当前帧加上之前的9个帧；大约333ms，每秒30帧）提供了10个连续场景图的时间连接，而不是只有一个场景图。通过场景图的时间连接，我们理解了一种算法，它以一个场景图列表作为输入，并输出一个单一的场景图。</p>
+</li>
+<li><p>在训练过程中，从当前场景图中提取出场景图的全局属性，但最重要的是算法对时间边进行了补充。这些边将一个特定对象实例的节点连接到一系列帧上。图5示出了该过程的图示。换句话说，时间连接保留编码空间关系的节点和边的数量。由空间关系连接的所有节点总是属于一个帧，而沿时间边的路径在多个帧上跟踪一个对象实例。因此，空间关系的边和时间边是互斥的。这种方法可以与Koppulaet al.[2]，[20]编码时间关系的方式相比较，但是它们使用它来连接时间段上的节点，而不是帧上的节点。</p>
 </li>
 </ul>
 
@@ -217,7 +219,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/05/13/leetcode%E5%88%B7%E9%A2%98_0513/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/06/04/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0Learning%20object-action%20relations%20from%20bimanual%20human%20demonstration%20using%20graph%20network/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -233,19 +235,10 @@
   
   <nav class="article-nav">
     
-      <a href="/just-to.github.io/2020/06/04/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0Learning%20object-action%20relations%20from%20bimanual%20human%20demonstration%20using%20graph%20network/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            论文笔记Learning object-action relations from bimanual human demonstration using graph network
-          
-        </div>
-      </a>
     
-    
-      <a href="/just-to.github.io/2020/05/11/leetcode%E5%88%B7%E9%A2%98_0511/" class="article-nav-link">
+      <a href="/just-to.github.io/2020/05/13/leetcode%E5%88%B7%E9%A2%98_0513/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">2020-5-11leetcode刷题</div>
+        <div class="article-nav-title">2020-5-13leetcode刷题</div>
       </a>
     
   </nav>
